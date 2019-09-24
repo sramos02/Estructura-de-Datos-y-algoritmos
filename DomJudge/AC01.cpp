@@ -1,24 +1,28 @@
 //SERGIO RAMOS MESA
 #include <iostream>
+#include <fstream>
 using namespace std;
 
+void cargarVector(int v[], const int n){
+	for (int i = 0; i < n; i++) cin >> v[i]; //O(N)
+}
+
 void resuelveCaso() {
-	int n, V[10000];
+	int n;
+	int v[10000];
 	int valles = 0, picos = 0;
+
 	cin >> n;
 
 	//Casos base, hay menos de tres elementos
+	cargarVector(v, n);
+
 	if (n < 3) cout << "0 0" << endl;
 	else {
-
-		cin >> V[0];
-		cin >> V[1];
-
-		//Un valle o un pico nunca puede estar en los extremos  O(N)
+		//O(N)
 		for (int i = 2; i < n; i++) {
-			cin >> V[i];
-			if ((V[i - 1] > V[i - 2]) && (V[i - 1] > V[i])) picos++;
-			else if ((V[i - 1] < V[i - 2]) && (V[i - 1] < V[i])) valles++;
+			if ((v[i - 1] > v[i - 2]) && (v[i - 1] > v[i])) picos++;
+			else if ((v[i - 1] < v[i - 2]) && (v[i - 1] < v[i])) valles++;
 		}
 
 		cout << picos << " " << valles << endl;
@@ -26,9 +30,26 @@ void resuelveCaso() {
 }
 
 int main() {
-	int casos;
-	cin >> casos;
 
-	for (int i = 0; i < casos; i++) resuelveCaso();
+	// Para la entrada por fichero.
+	#ifndef DOMJUDGE
+		std::ifstream in("casos.txt");
+		auto cinbuf = std::cin.rdbuf(in.rdbuf());
+	#endif
+
+
+	unsigned int numCasos;
+	cin >> numCasos;
+	// Resolvemos
+	for (int i = 0; i < numCasos; ++i) {
+		resuelveCaso();
+	}
+
+
+	#ifndef DOMJUDGE // para dejar todo como estaba al principio
+		cin.rdbuf(cinbuf);
+		system("PAUSE");
+	#endif
+
 	return 0;
 }
