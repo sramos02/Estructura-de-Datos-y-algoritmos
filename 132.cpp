@@ -26,21 +26,20 @@ int main(){
     
     string palabra;
     int numCasos; 
+    int i = 0;
     
     cin >> palabra;
     cin >> numCasos;
-    
-    while (numCasos != 0){
-
-        resuelveCaso(palabra)?cout << "SI" << endl : cout << "NO" << endl;
-        numCasos--;
         
-        if(numCasos == 0){ 
+    while(i < numCasos){
+        cout << (resuelveCaso(palabra) ? "SI"  : "NO") << endl;
+        i++;
+        
+        if(i == numCasos){
             cout << endl;
             cin >> palabra;
             cin >> numCasos;
         }
     }
-
     return 0;
 }
