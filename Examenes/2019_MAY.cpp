@@ -9,7 +9,9 @@ int resuelveCaso(int k, int n, bool a[]){
     //I = {}
     while(i < n){        
         int aux = 0;
-        for(int j = i; (k < aux) && (j < n); j++) aux++;   
+        for(int j = i; (k < aux) && (j < n); j++) 
+            if(a[i]) aux++;
+        
         if(aux != 0) res = min(res, aux);
         i++;
     }
