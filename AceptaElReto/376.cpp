@@ -4,26 +4,19 @@ using namespace std;
 
 //P = {2 <= n <= v.length()}
 int resuelveCaso(int n, int v[]){
-    int picos = 0;
+    int p = 0;
     int i = 0;
     
-    if(n == 2){
-        if(v[0] != v[1]) picos++; //Si son diferentes alturas siempre tendrá un pico
+    if (v[0] > v[1] && v[n-1] < v[0]) p++;
+    if (v[n-1] > v[n-2] && v[n-1] > v[0]) p++;
+    
+    for(int i = 1; i <= n - 2; i++) {
+        if (v[i-1] < v[i] && v[i] > v[i+1]) p++;
     }
-    else {
-        while(i < n){
-            int ant = (i - 2) % n;
-            int act = (i - 1) % n;
-            int sig = i % n;
-            
-            
-            if((v[ant] < v[act]) && (v[act] > v[sig])) picos++;
-            i++;
-        }
-    }
-    return picos;
+    
+    return p;
 }
-//Q = {ret = (#i : 0 <= i < n && (v[(i-2) mod n] <= v[(i-1) mod n] >= v[(i) mod n]) : i)}
+//Q = {ret = (#i: 0 <= i < n : ??)}
 
 int main()
 {
