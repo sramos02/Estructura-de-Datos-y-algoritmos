@@ -2,14 +2,12 @@
 #include <iostream>
 using namespace std;
 
-
 int resuelveCaso(int n, int aux) {
 	int acum = 0;
 
-	if (n == 0);
-	else if (n < 10) {
-		acum = resuelveCaso(0, aux + n % 10) + n%10;
+	if (n < 10) {
 		cout << n % 10;
+		acum += n%10;
 	}
 	else {
 		acum = resuelveCaso(n / 10, aux + n % 10) + n % 10;
@@ -30,6 +28,5 @@ int main() {
 		cin >> n;
 	}
 
-	system("Pause");
 	return 0;
 }
