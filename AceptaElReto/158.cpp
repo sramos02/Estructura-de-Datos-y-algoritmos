@@ -1,24 +1,20 @@
 #include <iostream>
 using namespace std;
 
-void resuelveCaso(){
-    int i = 0;   //Auxiliares
+void resuelveCaso(long long int n){
+    int i = 1, v[2];           //Auxiliares
     int arriba = 0, abajo = 0; //Salidas
-    long long n; int v[1000000000]; //Entradas 10^9 como maximo según el enunciado
+
+    cin >> v[0]; 
     
-    cin >> n;
-    if(n > 1) {
-        cin >> v[0]; i++;
-        
-        while(i < n){
-            cin >> v[i];
-            if(v[i - 1] < v[i]) arriba++;
-            else if (v[i - 1] > v[i]) abajo++;
-            i++;
-        }
-        cout << arriba << " " << abajo << endl;
+    while(i < n){
+        cin >> v[i%2];
+        if(v[(i - 1)%2] < v[i%2]) arriba++;
+        else if (v[(i - 1)%2] > v[i%2]) abajo++;
+        i++;
     }
-    else cout << "0 0" << endl;
+    
+    cout << arriba << " " << abajo << endl;
 }
 
 int main(){
@@ -28,7 +24,9 @@ int main(){
     cin >> numCasos;
         
     while(i < numCasos){
-        resuelveCaso();
+        long long int n;
+        cin >> n;
+        resuelveCaso(n);
         i++;
     }
     
