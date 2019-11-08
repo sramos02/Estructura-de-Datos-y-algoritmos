@@ -3,14 +3,13 @@
 using namespace std;
 
 
-int resolver(long long n, int l){
-    if(l == 1) return 0;
-    else if(n%l == 0) return 1;
-    resolver(n/10, l-1);
+bool resolver(long long int n, int l){
+    if(l == 1) return true;
+    return resolver(n/10, l-1) && (n%l == 0);
 }
 
 bool resuelveCaso() {
-    long long n;
+    long long int n;
     
     cin >> n;
     if(!cin) return false;  
