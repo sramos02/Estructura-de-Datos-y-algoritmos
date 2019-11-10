@@ -2,28 +2,28 @@
 #include <iostream>
 using namespace std;
 
-int resuelveCaso(int n, int aux) {
+int solveCase(int n) {
 	int acum = 0;
-
+	int digit = n%10;
+	
 	if (n < 10) {
-		cout << n % 10;
-		acum += n%10;
+		cout << digit;
+		acum += digit;
 	}
 	else {
-		acum = resuelveCaso(n / 10, aux + n % 10) + n % 10;
-		cout << " + " << n % 10;
+		acum = solveCase(n / 10) + digit;
+		cout << " + " << digit;
 	}
 
 	return acum;
 }
 
 int main() {
-	
 	int n;
 	cin >> n;
 
 	while (n != -1) {
-		int aux = resuelveCaso(n, 0);
+		int aux = solveCase(n);
 		cout << " = "<< aux << endl;
 		cin >> n;
 	}
