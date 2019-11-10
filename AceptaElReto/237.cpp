@@ -3,25 +3,23 @@
 using namespace std;
 
 
-bool resolver(long long int n, int l){
+bool solve(long long int n, int l){
     if(l == 1) return true;
-    return resolver(n/10, l-1) && (n%l == 0);
+    return solve(n/10, l-1) && (n%l == 0);
 }
 
-bool resuelveCaso() {
+bool solveCase() {
     long long int n;
     
     cin >> n;
     if(!cin) return false;  
     
     int l = floor(log10(n)) + 1;
-    resolver(n, l)?cout << "POLIDIVISIBLE": cout << "NO POLIDIVISIBLE";
+    solve(n, l)?cout << "POLIDIVISIBLE": cout << "NO POLIDIVISIBLE";
     cout << endl;
     return true;
 }
 
-int main() {
-	   
-	while(resuelveCaso());
-	return 0;
+int main() {   
+    while(solveCase());
 }
