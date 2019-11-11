@@ -3,9 +3,8 @@
 using namespace std;
 
 //P = {2 <= n <= v.length()}
-int resuelveCaso(int n, int v[]){
-    int p = 0;
-    int i = 0;
+int solveCase(int n, int v[]){
+    int p = 0, i = 0;
     
     if (v[0] > v[1] && v[n-1] < v[0]) p++;
     if (v[n-1] > v[n-2] && v[n-1] > v[0]) p++;
@@ -18,15 +17,14 @@ int resuelveCaso(int n, int v[]){
 }
 //Q = {ret = (#i: 0 <= i < n : ??)}
 
-int main()
-{
+int main(){
     int n;
     int v[1000];
     
-    cin >> n;
-    while(n != 0){
+    
+    while((cin >> n) != 0){
         for(int i = 0; i < n; i++) cin >> v[i];
-        cout << resuelveCaso(n , v) << endl;; 
+        cout << solveCase(n , v) << endl;
         cin >> n;
     }
     
