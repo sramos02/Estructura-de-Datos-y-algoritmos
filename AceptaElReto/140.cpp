@@ -4,16 +4,13 @@ using namespace std;
 
 int solveCase(int n) {
 	int acum = 0;
-	int digit = n%10;
 	
 	if (n < 10) {
-		cout << digit;
-		acum += digit;
+		cout << n;
+		return n;
 	}
-	else {
-		acum = solveCase(n / 10) + digit;
-		cout << " + " << digit;
-	}
+	acum = solveCase(n / 10) + n%10;
+	cout << " + " << n%10;
 
 	return acum;
 }
