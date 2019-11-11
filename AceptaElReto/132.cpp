@@ -2,37 +2,44 @@
 #include <string>
 using namespace std;
 
-bool resuelveCaso(const string palabra) {
+//P = {0 <= i < j <= word.length}
+bool solve(int i, int j, const string word){
 
-	int aux, i, j;
+    //I = {ret = PT u : i <= j : word[u] == word[j]}
+	while (i <= j) {
+		if (word[i] != word[j]) ret = false;
+		i++;
+	}
+
+	return ret;
+}
+//Q = {ret = PT u : i <= u <= j : word[u] == word[j]}
+
+bool solveCase(const string word) {
+	bool ret = true;
+    int aux, i, j;
 	cin >> i >> j;
 
-	//I siempre será la posición mínima
-	if (i > j) {
+	//I is always the minimun position
+    if (i > j) {
 		aux = i;
 		i = j;
 		j = aux;
 	}
 
-	while (i <= j) {
-		if (palabra[i] != palabra[j]) return false;
-		i++;
-	}
-
-	return true;
+    return solve(i, j, word);
 }
 
 int main() {
 
-	string palabra;
-	int numCasos;
-	int i = 0;
+	string word;
+	int cases;
 
-	getline(cin, palabra);
-	cin >> numCasos;
+	getline(cin, word);
+	cin >> cases;
 
-	while (i < numCasos) {
-		cout << (resuelveCaso(palabra) ? "SI" : "NO") << endl;
+    while (i < numCasos) {
+		cout << (solveCase(palabra) ? "SI" : "NO") << endl;
 		i++;
 
 		if (i == numCasos) {
@@ -45,5 +52,6 @@ int main() {
 			i = 0;
 		}
 	}
+    
 	return 0;
 }
