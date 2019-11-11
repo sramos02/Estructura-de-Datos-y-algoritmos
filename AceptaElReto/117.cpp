@@ -2,18 +2,17 @@
 #include <iostream>
 using namespace std;
 
+void solveCase() {
+	string names;
 
-void resuelveCaso() {
-	string nombre;
-
-	for (int i = 0; i < 4; i++) cin.get(); //Elimina "Hola soy ", coste CONSTANTE O(1)
-	cin >> nombre;
-	cout << "Hola, " + nombre + "." << endl;
+	for (int i = 0; i < 4; i++) cin.get();
+	cin >> names;
+	cout << "Hola, " + names + "." << endl;
 }
 
 int main() {
-	unsigned short casos;
-	cin >> casos;
-	for (int i = 0; i < casos; i++) resuelveCaso();
+	unsigned short cases;
+	cin >> cases;
+	for (int i = 0; i < cases; i++) solveCase();
 	return 0;
 }
