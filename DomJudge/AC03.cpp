@@ -7,8 +7,7 @@ void solveCase(vector<int> v, int t, int & retP, int & retQ) {
 	int sum = 0, max = 0;			//Variables
 	int q = v.size() - 1, p = q;    //Auxiliar iterators
 
-	while (p > 0) {
-		p--;
+	while (p >= 0) {
 
 		if (v.at(p) <= t) {
 			while (v.at(p) <= t && p > 0) p--; //Reset state
@@ -21,7 +20,9 @@ void solveCase(vector<int> v, int t, int & retP, int & retQ) {
 			max = sum;
 			retQ = q;
 			retP = p;
-		}
+		}	
+		
+		p--;
 	}
 }
 //Q = {retP = Ep q: 0 <= p <= q < v.size() && min(isValid(v, p, q, t): p && retQ = Ep q: 0 <= p <= q < v.size() && min(isValid(v, p, q, t): q}
