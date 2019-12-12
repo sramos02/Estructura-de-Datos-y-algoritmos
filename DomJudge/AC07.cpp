@@ -11,25 +11,31 @@ vector<int> laCasaDeHeidi(vector<int> datos, int minimo, int & secMasLarga, int 
 	int altMax = datos[datos.size() - 1];
 	int longitud = 1;
 
-	while (j > 0) {
-		if (datos[j - 1] == datos[j]) {
-			longitud++;
-			if (longitud >= minimo && longitud > secMasLarga) secMasLarga = longitud;
-		}
+	//Nos quedamos el caso 0 fuera para comprobar al final
+	while (j > 1) {
+		if (datos[j - 1] == datos[j]) longitud++;
 		else {
 			if (datos[j - 1] < datos[j]);
 			else altMax = datos[j];
 
-
-			if (longitud > minimo) {
-				resultado.push_back(longitud - j + 1); 
+			if (longitud >= minimo) {
+				if(longitud > secMasLarga) secMasLarga = longitud;
+				resultado.push_back(datos.size() - j - 1); 
 				numLlanos++;
 			}
-
-			j--;
 			longitud = 1;
 		}
+		j--;
 	}
+
+	//  j = 0 // Solo entra si el resultado lleva a una posible solución
+	if (longitud + 1 >= minimo && datos[j] == datos[j + 1]) {
+		longitud++;
+		if (longitud > secMasLarga) secMasLarga = longitud;
+		resultado.push_back(datos.size() - j - 1);
+		numLlanos++;
+	}
+
 	return resultado;
 }
 //Q = resultado(u) = {PT u, w :(0 <= u <= w < datos.size()) && (PT k: u <= k <= w: datos[k] = datos.at[u] && esAccesible(datos, k)) : ((w - u) >= minimo)}
@@ -51,7 +57,7 @@ bool resuelveCaso() {
 
 	//Mostrar solución
 	cout << secMasLarga << " " << numLlanos << " ";
-	for (int i = 0; i < numLlanos; i++) cout << ret[i] << " ";
+	for (int i = numLlanos - 1; i >= 0; i--) cout << ret[i] << " ";
 	cout << endl;
 
 	//Retorno
@@ -61,5 +67,6 @@ bool resuelveCaso() {
 
 int main() {
 	while (resuelveCaso());
+	system("PAUSE");
 	return 0;
 }
