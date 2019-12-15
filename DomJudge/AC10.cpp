@@ -8,10 +8,10 @@ int invertir(int n){
    if(n < 10) return n;
    else{
         int aux = invertir(n/10);
-        return 10*n + aux    
+        int pot = pow(10, (int)log10(n));
+        return (n%10) * pot + aux;
    }
    
-   return n;
 }
 
 int main(){
