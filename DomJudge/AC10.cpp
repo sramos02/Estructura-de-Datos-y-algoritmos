@@ -2,9 +2,7 @@
 #include <math.h>
 using namespace std;
 
-int invertir(int n){
-   int length = log10(n) + 1;
-   
+int invertir(int n){   
    if(n < 10) return n;
    else{
         int aux = invertir(n/10);
