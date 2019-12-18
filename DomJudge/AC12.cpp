@@ -28,7 +28,7 @@ bool resuelveCaso() {
 		datos.push_back(aux);
 	}
 
-	cout << curvaConcava(datos, 0, datos.size());
+	cout << curvaConcava(datos, 0, datos.size()) << endl;
 	return true;
 }
 
