@@ -5,12 +5,12 @@ using namespace std;
 
 char quienFalta(vector<char> datos, int ini, int fin) {
     int iniAux = datos[0];
-    if (ini + 1 == fin) return datos[ini]; //Vector de un solo elemento
+    if (ini + 1 == fin) return datos[ini] - 1; //Vector de un solo elemento
 
 	int m = (ini + fin - 1) / 2;
-	if (m > 0 && iniAux + m < iniAux-datos[m]) return curvaConcava(datos, ini, m);
-	else if (m < datos.size() && iniAux+m < iniAux-datos[m]) return curvaConcava(datos, m + 1, fin);
-	return datos[m] - 1;
+	if (m > 0 && (iniAux + m) < iniAux-datos[m]) return quienFalta(datos, ini, m);
+	else if (m < datos.size() && (iniAux + m) < iniAux-datos[m]) return quienFalta(datos, m + 1, fin);
+	return datos[m] + 1;
 }
 
 
@@ -24,9 +24,9 @@ bool resuelveCaso() {
 	vector<char> datos;
 
     cin >> primero;
-	cin >> segundo;
+	cin >> ultimo;
 		
-	for(int i = 0; 1 < (segundo - primero); i++){    
+	for(int i = 0; i < (ultimo - primero); i++){    
 		cin >> aux;
 		datos.push_back(aux);
 	}
