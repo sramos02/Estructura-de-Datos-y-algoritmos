@@ -7,8 +7,8 @@ int curvaConcava(vector<int> datos, int ini, int fin) {
 	if (ini + 1 == fin) return datos[ini]; //Vector de un solo elemento
 
 	int m = (ini + fin - 1) / 2;
-	if (m > 0 && datos[m - 1] < datos[m]) curvaConcava(datos, ini, m);
-	else if (m < datos.size() && datos[m + 1] < datos[m]) curvaConcava(datos, m + 1, fin);
+	if (m > 0 && datos[m - 1] < datos[m]) return curvaConcava(datos, ini, m);
+	else if (m < datos.size() && datos[m + 1] < datos[m]) return curvaConcava(datos, m + 1, fin);
 	return datos[m];
 		
 }
