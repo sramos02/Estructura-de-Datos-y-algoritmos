@@ -2,37 +2,35 @@
 #include <vector>
 using namespace std;
 
+char cualFalta(vector<char> datos, char primero, char ultimo, int ini, int fin){
+    //Casos directos
+    if(datos[0] != primero) return primero;
+    else if (datos[datos.size()-1] != ultimo) return ultimo;
 
-int curvaConcava(vector<int> datos, int ini, int fin) {
-	if (ini + 1 == fin) return datos[ini]; //Vector de un solo elemento
+    //Casos base
+    if(ini == fin) return datos[ini] - 1;
 
-	int m = (ini + fin - 1) / 2;
-	if (m > 0 && datos[m - 1] < datos[m]) return curvaConcava(datos, ini, m);
-	else if (m < datos.size() && datos[m + 1] < datos[m]) return curvaConcava(datos, m + 1, fin);
-	return datos[m];
-		
-}
-
-
-
-bool resuelveCaso() {
-	int n;
-	cin >> n;
-	if (!cin) return false;
-
-	vector<int> datos;
-
-	for(int i = 0; i < n; i++){
-		int aux;
-		cin >> aux;
-		datos.push_back(aux);
-	}
-
-	cout << curvaConcava(datos, 0, datos.size()) << endl;
-	return true;
+    //Llamadas recursivas
+    int m = (ini + fin) / 2;
+    if(datos[m] == primero + m) return cualFalta(datos, primero, ultimo, m + 1, fin);
+    else return cualFalta(datos, primero, ultimo, ini, m);
 }
 
 int main() {
-	while (resuelveCaso());
-	return 0;
+    int n;
+    cin >> n;
+    for(int i = 0; i < n; i++){
+        vector<char> datos;
+        char primero, ultimo;
+        cin >> primero >> ultimo;
+
+        for(int j = 0; j < (ultimo - primero); j++){
+            char aux;
+            cin >> aux;
+            datos.push_back(aux);
+        }
+
+        cout << cualFalta(datos, primero, ultimo, 0, datos.size() - 1) << endl;
+    }
+    return 0;
 }
