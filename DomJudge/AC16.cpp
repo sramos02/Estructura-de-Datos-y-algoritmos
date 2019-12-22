@@ -7,7 +7,7 @@ struct degradado {
     bool correcto;
 };
 
-
+//SIN TERMINAR, SOLUCIÓN ERRONEA
 degradado elDegradado(const vector<int> matriz, const int ini, const int fin){
     //Caso base
     if(ini == fin) return {matriz[ini], true};
