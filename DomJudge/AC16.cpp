@@ -7,10 +7,10 @@ struct degradado {
     bool correcto;
 };
 
-//SIN TERMINAR, SOLUCIÓN ERRONEA
+
 degradado elDegradado(const vector<int> matriz, const int ini, const int fin){
-    //Caso base
-    if(ini == fin) return {matriz[ini], true};
+    //Caso base (2 elementos)
+    if (ini + 1 >= fin) return {matriz[ini] + matriz[fin], matriz[ini] <= matriz[fin]};
 
     //Caso recursivo
     degradado izq, drc;
@@ -25,7 +25,7 @@ bool resuelveCaso(){
     int n, m;
     bool ret = true;
 
-    cin >> n >> m;
+    cin >> n>> m;
     if(!cin) return  false;
 
 
@@ -43,7 +43,7 @@ bool resuelveCaso(){
     //Si hay un solo elemento no hay degradado
     if(m > 1){
         for(int i = 0; i < n && ret; i++){
-            ret = elDegradado(matriz[i], 0, matriz.size() - 1).correcto;
+            ret = elDegradado(matriz[i], 0, matriz.size()).correcto;
         }
     }
     (ret)?cout << "SI\n":cout << "NO\n";
