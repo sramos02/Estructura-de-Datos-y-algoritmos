@@ -12,20 +12,20 @@ typedef struct{
 
 
 bool crece(const vector<int> a, const vector<int>  b, const int i, const int j){
-    if (a[i] >= b[i] && a[j] >= b[j]) return true;
-    else if(b[i] >= a[i] && b[j] >= a[j]) return true;
+    if (a[i] <= a[j] && b[i] >= b[j] && a[i] > b[i]) return true;
+    else if(b[i] <= b[j] && a[i] >= a[j] && a[i] < b[i]) return true;
     else return false;
 }
 
 bool decrece(const vector<int> a, const vector<int> b, const int i, const int j){
-    if(a[i] <= b[i] && a[j] <= b[j]) return true;
-    else if (b[i] <= a[i] && b[j] <= a[j]) return true;
+    if(a[i] >= a[j] && b[i] <= b[j] && a[i] > b[i]) return true;
+    else if (b[i] >= b[j] && a[i] <= a[j] && a[i] < b[i]) return true;
     else return false;
 }
 
 bool cruce(const vector<int> a, const vector<int> b, const int i, const int j){
     if(a[i] <= b[j] && b[i] >= a[j]) return true;
-    else if (b[i] <= a[j] && a[i] >= b[j]) return true;
+    // else if (b[i] >= a[j] && a[i] <= b[j]) return true;
     return false;
 }
 
@@ -33,7 +33,7 @@ resultado lasLineas(const vector<int> a, const vector<int> b, int ini, int fin){
 
     //Caso base 1 elemento
     if(a.size() == 1) return{false, 0, 0, 1};
-    
+
     int m = (ini + fin) / 2;
     if(a[m] == b[m]) return {true, m, 0, 0};
 
@@ -54,7 +54,7 @@ resultado lasLineas(const vector<int> a, const vector<int> b, int ini, int fin){
 bool resuelveCaso(){
     int n;
     cin >> n;
-    if(!cin) return false;
+    if(n == 0) return false;
 
     vector<int> a;
     vector<int> b;
