@@ -11,11 +11,11 @@ int elCercano(const vector<int> datos, const int x, int ini, int fin, int mejorS
     int m = (ini + fin) / 2;
 
     //Actualización
-    if (abs(x - datos[m]) < abs(x - datos[mejorSol])) mejorSol = m;
+    if(datos[m] == x) return x;
+    else if (abs(x - datos[m]) < abs(x - datos[mejorSol])) mejorSol = m;
 
     if(x <= datos[m]) for(int i = 0; m > 0 && datos[m - i - 1] == datos[m]; i--) m--;
     else  for(int i = 0; m < datos.size()-1 && datos[m + i + 1] == datos[m]; i++)m++;
-
 
     //Movimiento
 
