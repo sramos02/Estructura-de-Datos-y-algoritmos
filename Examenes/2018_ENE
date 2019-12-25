@@ -1,0 +1,42 @@
+//Ejercicio 2
+  #include <iostream>
+#include <vector>
+using namespace std;
+
+int elCercano(const vector<int> datos, const int x, int ini, int fin, int mejorSol){
+
+    //Calculo para dividir
+    int m = (ini + fin) / 2;
+
+    //Actualización
+    if(x < datos[m]) for(int i = m; m > 0 && datos[i] == datos[m]; i--)m--;
+    else for(int i = m; m < datos.size()-1 && datos[i] == datos[m]; i++)m++;
+
+    if (abs(x - datos[m]) < abs(x - datos[mejorSol])) mejorSol = m;
+
+    //Movimiento
+
+    if(abs(mejorSol - m) == 1) return datos[mejorSol];
+    else if(m > 0 && x < datos[m]) elCercano(datos, x, ini, m, mejorSol);
+    else if (m < datos.size() && x > datos[m]) return elCercano(datos, x, m + 1, fin, mejorSol);
+
+}
+
+int main(){
+    int casos;
+    cin >> casos;
+    for(int i = 0; i < casos; i++){
+        int x, n;
+        vector<int> datos;
+
+        cin >> x >> n;
+        for(int j = 0; j < n; j++){
+            int aux;
+            cin >> aux;
+            datos.push_back(aux);
+        }
+        cout << elCercano(datos, x, 0, datos.size() - 1, 0);
+    }
+
+    return 0;
+}
