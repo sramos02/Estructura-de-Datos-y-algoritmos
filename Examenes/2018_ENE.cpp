@@ -46,3 +46,47 @@ int main(){
 
 
 //Ejercicio 3
+
+void lasQuitanieves(int nivel, int solAct, int & mejorSol, const vector<int> anchurasM, const vector<int> anchurasN, const vector<vector<int>> calidades){
+    int i = 0;
+    while(i < anchurasN.size()) { //i < n
+
+        if (anchurasM >= anchurasN) {
+            //Marca
+            solAct += calidades[nivel][i];
+
+            //Prueba
+            if(solAct > mejorSol) mejorSol = solAct;
+            else lasQuitanieves(nivel + 1, solAct, mejorSol, anchurasM, anchurasN, calidades);
+
+            //Desmarca
+
+        }
+    }
+}
+
+int main(){
+    int casos;
+    cin >> casos;
+    for(int i = 0; i < casos; i++){
+        int m, n;
+        vector<int> anchurasM;
+        vector<int> anchurasN;
+        vector<vector<int>> calidades;
+
+        cin >> m >> n;
+        for(int u = 0; u < m; u++) cin >> anchurasM[u];
+        for(int v = 0; v < n; v++) cin >> anchurasN[v];
+
+        for(int u = 0; u < m; u++){
+            for(int v = 0; v < n; v++){
+                cin >> calidades[u][v];
+            }
+        }
+
+        int sol;
+        lasQuitanieves(0, 0, sol, anchurasM, anchurasN, calidades);
+        cout << sol << endl;
+    }
+    return 0;
+}
