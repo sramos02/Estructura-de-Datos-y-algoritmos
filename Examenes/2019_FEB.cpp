@@ -1,5 +1,5 @@
 #include <iostream>
-#include <math.h>
+#include <cmath>
 using namespace std;
 
 //Ejercicio 1
@@ -32,3 +32,35 @@ int main(){
 }
 
 //Ejercicio 3
+
+bool sumdivisible(const int n){
+    int numDigitos = (int)log10(n) + 1;
+    if(numDigitos == 1) return true;
+
+    int ultimoDigito = (n/(10*numDigitos - 1));
+    return (ultimoDigito % numDigitos == 0);
+}
+
+void cuantoSumdivisible(const int primera, const int longitud, int nivel, int solAct, int & ret){
+    int k = 0;
+
+    while(k < longitud){
+        if(sumdivisible(solAct*10 + k)) {
+            if (nivel == longitud) ret++;
+            else cuantoSumdivisible(primera, longitud, nivel + 1, solAct*10 + k, ret);
+        }
+        k++;
+    }
+}
+
+int main(){
+    int d, k;
+    cin >> d;
+    while(d != 0){
+        cin >> k;
+        int ret = 0;
+        cuantoSumdivisible(d, k, 1, d, ret);
+        cout << ret << endl;
+        cin >> d;
+    }
+}
