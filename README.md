@@ -1,4 +1,4 @@
-# Estructura de datos y algoritmos (EDA)
+# Estructura de datos y algoritmos (EDA // FAL)
 
 Ejercicios de la asignatura, examenes y retos sobre programación competitiva
 
