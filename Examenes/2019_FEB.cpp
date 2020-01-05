@@ -42,14 +42,15 @@ bool sumdivisible(const int n){
 }
 
 void cuantoSumdivisible(const int primera, const int longitud, int nivel, int solAct, int & ret){
-    int k = 0;
+    int i = 0;
 
-    while(k < longitud){
-        if(sumdivisible(solAct*10 + k)) {
+    while(i < longitud){
+        if(sumdivisible(solAct*10 + i)) {
+            solAct = solAct*10 + i
             if (nivel == longitud) ret++;
-            else cuantoSumdivisible(primera, longitud, nivel + 1, solAct*10 + k, ret);
+            else cuantoSumdivisible(primera, longitud, nivel + 1, solAct, ret);
         }
-        k++;
+        i++;
     }
 }
 
