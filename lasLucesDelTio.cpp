@@ -1,3 +1,6 @@
+//http://eda.fdi.ucm.es/domjudge/team/problems/86/text
+//La solución no funciona correctamente
+
 #include <iostream>
 #include <vector>
 using namespace std;
