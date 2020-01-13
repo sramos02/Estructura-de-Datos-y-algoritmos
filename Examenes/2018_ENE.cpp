@@ -1,7 +1,66 @@
-//Ejercicio 2
 #include <iostream>
 #include <vector>
 using namespace std;
+
+//Ejercicio 1
+struct tSolucion{
+    int ini = 0;
+    int fin = 0;
+};
+
+//P: {0 <= n <= long(datos)}
+tSolucion secMasLargaConsecutivosCrecientes(const int n, const vector<int> datos){
+    //A0
+    tSolucion ret;
+    tSolucion act;
+    int i = 0;
+
+    //I = {0 <= i <= n && (act = PT u,w : 0 <= u < w <= i && consecutivosCrecientes(u, w) : w - u)) && ret = (ret = max u,w : 0 <= u < w <= i && consecutivosCrecientes(u, w) : w - u))}
+    //consecutivosCrecientes(u, w): {PT p : u <= p < w : datos[p] < datos[p+1]}
+    while(i < n){
+        //A1
+        if(datos[i] - datos[i+1] == -1  || datos[i] - datos[i+1] == 0){
+           act.fin++;
+            if(abs(datos[ret.fin] - datos[ret.ini]) < abs(datos[act.fin] - datos[act.ini])){
+                ret.ini = act.ini;
+                ret.fin = act.fin;
+            }
+        }
+        else{
+            act.ini  = i+1;
+            act.fin = i+1;
+        }
+        //R = {0 <= i+1 <= n && (act = PT u,w : 0 <= u < w <= i+1 && consecutivosCrecientes(u, w) : w - u)) && ret = (ret = max u,w : 0 <= u < w <= i+1 && consecutivosCrecientes(u, w) : w - u))}
+        //A2
+        i++;
+    }
+    //I && !B
+    return ret;
+}
+//Q: {ret = max u,w : 0 <= u < w <= n && consecutivosCrecientes(u, w) : w - u)}
+//consecutivosCrecientes(u, w): {PT p : u <= p < w : datos[p] < datos[p+1]}
+
+//funcion de cota = {n-i} La i va aumentando en cada iteración y, como n es constante, llegará un momento en el que se anulen
+//El coste del algoritmo es O(N), tenemos un bulce que se ejecuta n veces siendo el resto de instucciones, las del interior del bucle incluidas, constantes
+
+int main(){
+    int n;
+    cin >> n;
+    while(n > 0){
+        vector<int> datos;
+        for(int i = 0; i < n; i++){
+            int aux;
+            cin >> aux;
+            datos.push_back(aux);
+        }
+        tSolucion ret = secMasLargaConsecutivosCrecientes(n, datos);
+        cout << ret.ini << " " << ret.fin << endl;
+        cin >> n;
+    }
+}
+
+
+//Ejercicio 2
 
 //Coste O(logN) en relación con el numero de elementos del vector
 //El vector divide a la mitad todo el rato hasta encontrar un numero igual o mayor y uno menor
