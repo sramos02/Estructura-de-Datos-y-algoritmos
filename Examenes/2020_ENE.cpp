@@ -41,18 +41,6 @@ int main(){
 }
 
 //Ejercicio 2
-bool entretenido(unsigned long long n){
-
-    bool ret = true;
-    int i = log10(n) - 1;
-
-    while(i >= 0 && ret){
-        if((long long int)(n%10) == (long long int)(n%100/10)) ret = false;
-        n = n/10;
-        i--;
-    }
-    return ret;
-}
 
 //La complejidad de este algoritmo es O(N) ya que se crean N iteraciones, cada una de ellas
 //de coste constante O(1), el parametro k inicializado a 0 aumenta hasta llegar a N (caso base)
@@ -80,3 +68,37 @@ int main(){
         cin >> n;   
     }
 }
+
+//Ejercicio 3
+#include <iostream>
+using namespace std;
+
+
+void entretenidosExquisitos(const int n, const int d, const int k, int nivel, int solAct, int & ret){
+    int i = 0;
+        
+    while(i < 10) { //Numeros de 0 a 9
+        if(solAct*10+i < k && (i != solAct%10)) {
+            if(nivel == n) ret++;
+            else {
+                entretenidosExquisitos(n, d, k, nivel + 1, solAct, ret);
+            }
+        }
+        i++;
+    }
+}
+
+
+
+int main(){
+    int n, d, k;
+    cin >> n;
+    while(n =! -1){
+        cin >> d >> k;
+        int ret = 0;
+        entretenidosExquisitos(n, d, k, 0, d, ret);
+        cout << ret << endl;
+        cin >> n;   
+    }
+}
+
