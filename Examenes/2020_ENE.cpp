@@ -70,13 +70,11 @@ int main(){
 }
 
 //Ejercicio 3
-#include <iostream>
-using namespace std;
-
-
 void entretenidosExquisitos(const int n, const int d, const int k, int nivel, int solAct, int & ret){
     int i = 0;
-        
+    
+    //Empezamos en nivel 2 porque el 1 es D
+    
     while(i < 10) { //Numeros de 0 a 9
         if(solAct*10+i < k && (i != solAct%10)) {
             if(nivel == n) ret++;
@@ -94,11 +92,13 @@ int main(){
     int n, d, k;
     cin >> n;
     while(n =! -1){
-        cin >> d >> k;
+        cin >> d >> k;*/
         int ret = 0;
-        entretenidosExquisitos(n, d, k, 0, d, ret);
+        n = 2; d = 2; k = 5;
+        entretenidosExquisitos(n, d, k, 2, d, ret);
         cout << ret << endl;
         cin >> n;   
     }
+    return 0;
 }
 
