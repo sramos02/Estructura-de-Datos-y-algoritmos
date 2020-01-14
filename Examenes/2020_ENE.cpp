@@ -92,7 +92,7 @@ int main(){
     int n, d, k;
     cin >> n;
     while(n =! -1){
-        cin >> d >> k;*/
+        cin >> d >> k;
         int ret = 0;
         n = 2; d = 2; k = 5;
         entretenidosExquisitos(n, d, k, 2, d, ret);
