@@ -3,16 +3,14 @@
 using namespace std;
 
 void solveCase() {
-	string names;
+    string names, basura;
 
-	for (int i = 0; i < 4; i++) cin.get();
-	cin >> names;
-	cout << "Hola, " + names + "." << endl;
+    cin >> basura >> names;
+    cout << "Hola, " + names + "." << endl;
 }
 
 int main() {
-	unsigned short cases;
-	cin >> cases;
-	for (int i = 0; i < cases; i++) solveCase();
-	return 0;
+    unsigned short cases;
+    cin >> cases;
+    for (unsigned short i = 0; i < cases; i++) solveCase();
 }
